@@ -13,6 +13,10 @@ import { errorHandler } from '@/middleware/errorHandler';
 import { notFoundHandler } from '@/middleware/notFoundHandler';
 import { authenticate } from '@/middleware/authenticate';
 import appointmentsRouter from '@/modules/appointments/appointments.routes';
+import participantsRouter from '@/modules/participants/participants.routes';
+import arenasRouter from '@/modules/arenas/arenas.routes';
+import tournamentsRouter from '@/modules/tournaments/tournaments.routes';
+import authRouter from '@/modules/auth/auth.routes';
 
 // Load environment variables
 dotenv.config();
@@ -35,7 +39,10 @@ app.use(limiter);
 // CORS configuration
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+    origin: process.env.CORS_ORIGIN?.split(',') || [
+      'http://localhost:5173',
+      'http://localhost:5174',
+    ],
     credentials: true,
   })
 );
@@ -70,8 +77,16 @@ const swaggerSpec = swaggerJSDoc({
 });
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// API routes will be added here in Phase 1
+// Authentication routes (public)
+app.use('/api/auth', authRouter);
+
+// Protected API routes
 app.use('/api/appointments', authenticate, appointmentsRouter);
+app.use('/api/participants', authenticate, participantsRouter);
+app.use('/api/arenas', authenticate, arenasRouter);
+app.use('/api/tournaments', authenticate, tournamentsRouter);
+
+// API info endpoint
 app.get('/api', (_req, res) => {
   res.json({
     message: 'Beyblade Appointment Management System API',

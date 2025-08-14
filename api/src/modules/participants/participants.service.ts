@@ -92,3 +92,4 @@ export async function promoteWaitlist(appointmentId: number): Promise<void> {
     )
     .update({ status: 'booked', updated_at: db.fn.now() });
 }
+

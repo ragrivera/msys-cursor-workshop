@@ -53,3 +53,4 @@ jobs:
         run: |
           cd msys-cursor-workshop/api
           npm test -- --runInBand
+

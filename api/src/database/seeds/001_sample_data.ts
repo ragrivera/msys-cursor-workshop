@@ -10,8 +10,8 @@ export async function seed(knex: Knex): Promise<void> {
   // Arenas
   const [battleDomeId, trainingGroundId] = await knex('arenas')
     .insert([
-      { name: 'Battle Dome', capacity: 32 },
-      { name: 'Training Ground', capacity: 16 },
+      { name: 'Battle Dome', capacity: 32, location: 'Main Hall' },
+      { name: 'Training Ground', capacity: 16, location: 'Practice Area' },
     ])
     .returning<'arenas', { id: number }[]>('id')
     .then(rows => rows.map(r => r.id));

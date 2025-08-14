@@ -17,3 +17,4 @@ new Worker(
   },
   { connection }
 );
+

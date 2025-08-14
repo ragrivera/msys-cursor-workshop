@@ -35,11 +35,14 @@
 
 ## Phase 4 – Web Front-End Dashboard (Week 5)
 
-- [ ] Implement React hooks `_useAppointmentsQuery` and `_useBookAppointment`
-- [ ] Build `AppointmentFormDialog` with validation & shadcn/ui Dialog components
-- [ ] Create `AppointmentWidget` embeddable component
-- [ ] Add `/appointments` organizer dashboard page & sidebar entry
-- [ ] Implement dark-theme tokens & toggle (Tailwind `selector` strategy)
+- [x] Implement React hooks `_useAppointmentsQuery` and `_useBookAppointment`
+- [x] Build `AppointmentFormDialog` with validation & shadcn/ui Dialog components
+- [x] Create `AppointmentWidget` embeddable component
+- [x] Add `/appointments` organizer dashboard page & sidebar entry
+- [x] Implement dark-theme tokens & toggle (Tailwind `selector` strategy)
+- [x] Refactor folder structure to follow guestbox/core pattern with page-based organization
+- [x] Create participants management page with search, filtering, and add participant functionality
+- [x] Add authentication system with login page, protected routes, and user session management
 
 ## Phase 5 – Mobile Flow & Cron Jobs (Week 6)
 
