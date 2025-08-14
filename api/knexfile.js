@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('ts-node').register({ transpileOnly: true });
 
 const config = {
   development: {
@@ -62,7 +63,10 @@ const config = {
       min: 2,
       max: 20,
     },
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+    ssl:
+      process.env.NODE_ENV === 'production'
+        ? { rejectUnauthorized: false }
+        : false,
   },
 };
 
