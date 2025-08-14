@@ -4,18 +4,18 @@
 
 ## Phase 0 – Repository & Environment Bootstrap
 
-- [ ] Clone repository and install root dependencies
-- [ ] Configure global ESLint/Prettier settings
-- [ ] Provision `.env.example` files for API, Core, and Mobile apps
+- [x] Clone repository and install root dependencies
+- [x] Configure global ESLint/Prettier settings
+- [x] Provision `.env.example` files for API, Core, and Mobile apps
 
 ## Phase 1 – Database & Backend Foundation (Weeks 1-2)
 
-- [ ] Design relational schema (`appointments`, `arenas`, `participants`, `payments`)
-- [ ] Create initial Knex migrations with exclusion constraints
-- [ ] Seed sample data for local development
-- [ ] Scaffold Express module structure with `modules/appointments`
-- [ ] Integrate JWT authentication middleware
-- [ ] CI: run migrations & unit tests on pull requests
+- [x] Design relational schema (`appointments`, `arenas`, `participants`, `payments`)
+- [x] Create initial Knex migrations with exclusion constraints
+- [x] Seed sample data for local development
+- [x] Scaffold Express module structure with `modules/appointments`
+- [x] Integrate JWT authentication middleware
+- [x] CI: run migrations & unit tests on pull requests
 
 ## Phase 2 – Core Services & Business Rules (Week 3)
 

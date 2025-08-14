@@ -9,6 +9,8 @@ import dotenv from 'dotenv';
 import { logger } from '@/utils/logger';
 import { errorHandler } from '@/middleware/errorHandler';
 import { notFoundHandler } from '@/middleware/notFoundHandler';
+import { authenticate } from '@/middleware/authenticate';
+import appointmentsRouter from '@/modules/appointments/appointments.routes';
 
 // Load environment variables
 dotenv.config();
@@ -54,6 +56,7 @@ app.get('/health', (_req, res) => {
 });
 
 // API routes will be added here in Phase 1
+app.use('/api/appointments', authenticate, appointmentsRouter);
 app.get('/api', (_req, res) => {
   res.json({
     message: 'Beyblade Appointment Management System API',
