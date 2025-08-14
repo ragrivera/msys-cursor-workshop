@@ -44,3 +44,37 @@ export async function updateAppointment(
 export async function deleteAppointment(id: number): Promise<number> {
   return db<Appointment>('appointments').where({ id }).del();
 }
+
+export async function getRemainingCapacity(
+  appointmentId: number
+): Promise<number> {
+  const appointment = await db('appointments')
+    .select('appointments.*', 'arenas.capacity')
+    .join('arenas', 'appointments.arena_id', 'arenas.id')
+    .where('appointments.id', appointmentId)
+    .first();
+  if (!appointment) return 0;
+  const [{ count }] = await db('bookings')
+    .where({ appointment_id: appointmentId })
+    .whereIn('status', ['booked', 'checked_in'])
+    .count<{ count: string }>('id as count');
+  const used = Number(count);
+  return appointment.capacity - used;
+}
+
+export async function participantHasClash(
+  participantId: number,
+  start: string,
+  end: string
+): Promise<boolean> {
+  const clashes = await db('bookings as b')
+    .join('appointments as a', 'a.id', 'b.appointment_id')
+    .where('b.participant_id', participantId)
+    .whereIn('b.status', ['booked', 'checked_in'])
+    .whereRaw('tstzrange(a.start_time, a.end_time) && tstzrange(?, ?)', [
+      start,
+      end,
+    ])
+    .count<{ count: string }>('b.id as count');
+  return Number(clashes[0].count) > 0;
+}
