@@ -58,4 +58,14 @@ export async function seed(knex: Knex): Promise<void> {
       provider_reference: 'pi_1ABC1234',
     },
   ]);
+
+  // Bookings
+  await knex('bookings').insert([
+    {
+      appointment_id: quarterFinalId,
+      participant_id: valtId,
+      status: 'booked',
+    },
+    { appointment_id: quarterFinalId, participant_id: shuId, status: 'booked' },
+  ]);
 }

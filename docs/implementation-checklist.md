@@ -19,11 +19,11 @@
 
 ## Phase 2 – Core Services & Business Rules (Week 3)
 
-- [ ] Implement `AppointmentService` (CRUD, clash detection)
-- [ ] Implement `ParticipantService` (booking, cancellation, check-in)
-- [ ] Unit-test services to ≥ 80 % coverage
-- [ ] Add BullMQ job for wait-list promotion
-- [ ] Add Swagger/OpenAPI docs for new routes
+- [x] Implement `AppointmentService` (CRUD, clash detection)
+- [x] Implement `ParticipantService` (booking, cancellation, check-in)
+- [x] Unit-test services to ≥ 80 % coverage
+- [x] Add BullMQ job for wait-list promotion
+- [x] Add Swagger/OpenAPI docs for new routes
 
 ## Phase 3 – Payments & Notifications (Week 4)
 

@@ -5,6 +5,8 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import { pinoHttp } from 'pino-http';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
 
 import { logger } from '@/utils/logger';
 import { errorHandler } from '@/middleware/errorHandler';
@@ -54,6 +56,19 @@ app.get('/health', (_req, res) => {
     environment: process.env.NODE_ENV || 'development',
   });
 });
+
+// Swagger setup
+const swaggerSpec = swaggerJSDoc({
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Appointment Management API',
+      version: '1.0.0',
+    },
+  },
+  apis: ['./src/modules/**/*.ts'],
+});
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // API routes will be added here in Phase 1
 app.use('/api/appointments', authenticate, appointmentsRouter);
