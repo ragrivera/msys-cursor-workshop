@@ -15,3 +15,4 @@ describe('AppointmentService', () => {
     expect(typeof remaining).toBe('number');
   });
 });
+

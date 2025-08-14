@@ -1,29 +1,51 @@
+import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import Layout from "@/components/_Layout";
+import { ProtectedRoute, PublicRoute } from "@/components";
+import { protectedRoutes, publicRoutes } from "@/router/routes";
+import { AuthProvider } from "@/contexts/auth-context";
 
 function App() {
   return (
-    <div className="min-h-screen bg-background">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="flex h-screen items-center justify-center">
-              <div className="text-center">
-                <h1 className="text-4xl font-bold text-foreground mb-4">
-                  Beyblade Appointments
-                </h1>
-                <p className="text-muted-foreground">
-                  Tournament Management System
-                </p>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Phase 0 - Boilerplate Ready ✅
-                </p>
-              </div>
-            </div>
-          }
-        />
-      </Routes>
-    </div>
+    <AuthProvider>
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        }
+      >
+        <Routes>
+          {/* Public Routes */}
+          {publicRoutes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={
+                <PublicRoute>
+                  <route.element />
+                </PublicRoute>
+              }
+            />
+          ))}
+
+          {/* Protected Routes */}
+          {protectedRoutes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={
+                <ProtectedRoute>
+                  <Layout>
+                    <route.element />
+                  </Layout>
+                </ProtectedRoute>
+              }
+            />
+          ))}
+        </Routes>
+      </Suspense>
+    </AuthProvider>
   );
 }
 

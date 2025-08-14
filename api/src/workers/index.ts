@@ -14,3 +14,4 @@ setInterval(async () => {
 }, 60 * 1000);
 
 console.log('Waitlist promotion worker started');
+

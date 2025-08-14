@@ -27,6 +27,10 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --orange: 24.6 95% 53.1%;
+    --orange-foreground: 60 9.1% 97.8%;
+    --purple: 258.3 89.5% 66.3%;
+    --purple-foreground: 60 9.1% 97.8%;
   }
 
   .dark {
@@ -54,14 +58,50 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --orange: 20.5 90.2% 48.2%;
+    --orange-foreground: 60 9.1% 97.8%;
+    --purple: 263.4 70% 50.4%;
+    --purple-foreground: 60 9.1% 97.8%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Improve cursor behavior across the app */
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role="button"]:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
+
+  a,
+  [role="link"] {
+    cursor: pointer;
+  }
+
+  input,
+  textarea,
+  select {
+    cursor: text;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: pointer;
   }
 }
